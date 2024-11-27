@@ -1,0 +1,12 @@
+﻿@page "{id:int}"
+@model MiniDashboard.Pages.DeleteModel
+@{
+}
+
+<h1>Delete Task</h1>
+<p>Are you sure you want to delete this task?</p>
+<form method="post">
+    <input type="hidden" asp-for="Task.Id" />
+    <button type="submit">Delete</button>
+    <a asp-page="Index">Cancel</a>
+</form>

@@ -1,0 +1,21 @@
+﻿@page  "{id:int}"
+@model MiniDashboard.Pages.EditModel
+@{
+}
+
+<h1>Edit Task</h1>
+<form method="post">
+    <input type="hidden" asp-for="Task.Id" />
+    <label>Title</label>
+    <input type="text" asp-for="Task.Title" />
+    <label>Description</label>
+    <textarea asp-for="Task.Description"></textarea>
+    <label>Status</label>
+    <select asp-for="Task.Status">
+        <option>Pending</option>
+        <option>In Progress</option>
+        <option>Completed</option>
+    </select>
+    <button type="submit">Save</button>
+</form>
+

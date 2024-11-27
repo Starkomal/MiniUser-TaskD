@@ -1,0 +1,49 @@
+﻿@page
+@inject MiniDashboard.Services.TaskService TaskService
+@model MiniDashboard.Pages.TaskModel
+@{
+}
+<style>
+    table, th, td {
+  border: 1px solid;
+}
+</style>
+<h1>Task List</h1>
+<a asp-page="./Create">Add New Task</a>
+ <form method="get">
+    <label for="status">Filter by Status:</label>
+    <select id="status" name="Status" asp-for="Status">
+        <option value="">All</option>
+        <option value="Pending" selected="@Model.Status == "Pending"">Pending</option>
+        <option value="In Progress" selected="@Model.Status == "In Progress">In Progress</option>
+        <option value="Completed" selected="@Model.Status == "Completed"">Completed</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+<table style="width:100%;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in TaskService.GetAllTask())
+        {
+            <tr>
+                <td>@task.Id</td>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.Status</td>
+
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@task.Id">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@task.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
